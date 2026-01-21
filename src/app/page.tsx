@@ -73,6 +73,23 @@ const desktopIcons = [
 
 export default function HomePage() {
   const [activeWindow, setActiveWindow] = useState<number | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+
+  const copyEmail = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const email = "jonathancalderonsilberman@gmail.com";
+    try {
+      await navigator.clipboard.writeText(email);
+      setToast(`email pasted to clipboard ${email}`);
+      setTimeout(() => setToast(null), 3000);
+    } catch {
+      setToast("Failed to copy email to clipboard");
+      setTimeout(() => setToast(null), 3000);
+    }
+  };
 
   return (
     <div className="bg-ps1-light-grey flex min-h-screen flex-col bg-[url(../../public/church.png)]">
@@ -95,6 +112,11 @@ export default function HomePage() {
               href={icon.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={async (e) => {
+                if (icon.id === "email") {
+                  await copyEmail(e);
+                }
+              }}
               className="window-border flex w-24 flex-col items-center gap-2 bg-[#c0c0c0]/80 p-3 text-xs font-bold text-black transition hover:-translate-y-1 hover:shadow-[0_4px_0_0_#7a7a7a]"
             >
               <span className="flex h-12 w-12 items-center justify-center text-lg">
@@ -124,6 +146,12 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {toast && (
+        <div className="fixed right-4 bottom-4 z-50 rounded bg-black/90 px-4 py-2 text-sm text-white shadow-lg">
+          {toast}
+        </div>
+      )}
     </div>
   );
 }
