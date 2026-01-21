@@ -93,11 +93,18 @@ export default function HomePage() {
 
   return (
     <div className="bg-ps1-light-grey flex min-h-screen flex-col bg-[url(../../public/church.png)]">
-      <header className="window-border-inset bg-ps1-dark-grey z-50 flex h-12 w-full items-center gap-2 px-2">
-        <div className="text-s font-bold">
+      <header className="window-border z-50 flex h-8 w-full items-center gap-2 bg-white px-2">
+        <div className="text-s font-normal">
           Jonathan Calderon&apos;s Portfolio Page
         </div>
         <div className="ml-auto text-xs font-bold">
+          {new Date().toLocaleDateString([], {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+        </div>
+        <div className="text-xs font-bold">
           {new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
