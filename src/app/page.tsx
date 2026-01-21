@@ -111,8 +111,8 @@ export default function HomePage() {
           })}
         </div>
       </header>
-      <section className="flex-1 overflow-auto p-4">
-        <div className="mb-6 flex flex-wrap gap-4">
+      <section className="flex flex-1 overflow-auto">
+        <div className="flex flex-col gap-4 p-4">
           {desktopIcons.map((icon) => (
             <a
               key={icon.id}
@@ -141,16 +141,18 @@ export default function HomePage() {
             </a>
           ))}
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectWindow
-              key={project.id}
-              project={project}
-              isActive={activeWindow === project.id}
-              onActivate={() => setActiveWindow(project.id)}
-              onClose={() => setActiveWindow(null)}
-            />
-          ))}
+        <div className="flex-1 overflow-auto p-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectWindow
+                key={project.id}
+                project={project}
+                isActive={activeWindow === project.id}
+                onActivate={() => setActiveWindow(project.id)}
+                onClose={() => setActiveWindow(null)}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
