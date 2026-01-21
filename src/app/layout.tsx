@@ -4,9 +4,9 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Retro Portfolio - 90s OS Style",
-  description: "A nostalgic portfolio website styled like a 90s operating system",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: "Portfolio Page",
+  description: "Retro Portfolio Page",
+  icons: [{ rel: "icon", url: "/windows.png" }],
 };
 
 const geist = Geist({
