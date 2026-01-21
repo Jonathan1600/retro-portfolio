@@ -63,6 +63,12 @@ const desktopIcons = [
     href: "https://github.com/Jonathan1600",
     icon: "/github-96.png",
   },
+  {
+    id: "email",
+    label: "Email",
+    href: "mailto:jonathancalderonsilberman@gmail.com",
+    icon: "/gmail-96.png",
+  },
 ];
 
 export default function HomePage() {
