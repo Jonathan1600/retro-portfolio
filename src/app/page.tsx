@@ -50,6 +50,21 @@ const projects: Project[] = [
   },
 ];
 
+const desktopIcons = [
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/jonathan-calderon-silberman/",
+    icon: "💼",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    href: "https://github.com/Jonathan1600",
+    icon: "💾",
+  },
+];
+
 export default function HomePage() {
   const [activeWindow, setActiveWindow] = useState<number | null>(null);
 
@@ -67,6 +82,22 @@ export default function HomePage() {
         </div>
       </header>
       <section className="flex-1 overflow-auto p-4">
+        <div className="mb-6 flex flex-wrap gap-4">
+          {desktopIcons.map((icon) => (
+            <a
+              key={icon.id}
+              href={icon.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="window-border flex w-24 flex-col items-center gap-2 bg-[#c0c0c0]/80 p-3 text-xs font-bold text-black transition hover:-translate-y-1 hover:shadow-[0_4px_0_0_#7a7a7a]"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded bg-white text-lg shadow-inner">
+                {icon.icon}
+              </span>
+              <span className="text-center leading-tight">{icon.label}</span>
+            </a>
+          ))}
+        </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <ProjectWindow
