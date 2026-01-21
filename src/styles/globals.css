@@ -3,16 +3,20 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-ps1-dark-grey: #6c6c6c;
+  --color-ps1-light-grey: #adadad;
+  --color-ps1-silver: #8a8d8f;
+  --color-windows-blue: #000080
 }
 
 * {
   box-sizing: border-box;
 }
 
+
 body {
   margin: 0;
   padding: 0;
-  background: #008080; /* Windows 95 teal background */
   overflow-x: hidden;
   font-family: "MS Sans Serif", "Comic Sans MS", sans-serif;
 }
