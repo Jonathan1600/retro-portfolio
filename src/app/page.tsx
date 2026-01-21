@@ -56,7 +56,9 @@ export default function HomePage() {
   return (
     <div className="bg-ps1-light-grey flex min-h-screen flex-col bg-[url(../../public/church.png)]">
       <header className="window-border-inset bg-ps1-dark-grey z-50 flex h-12 w-full items-center gap-2 px-2">
-        <div className="text-xs font-bold">Jonathan&apos;s Portfolio</div>
+        <div className="text-s font-bold">
+          Jonathan Calderon&apos;s Portfolio Page
+        </div>
         <div className="ml-auto text-xs font-bold">
           {new Date().toLocaleTimeString([], {
             hour: "2-digit",
