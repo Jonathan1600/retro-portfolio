@@ -132,17 +132,24 @@ export default function HomePage() {
           <div className="relative min-h-full">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
-                <ProjectWindow
-                  key={project.id}
-                  project={project}
-                  isActive={activeWindow === project.id}
-                  onActivate={() => setActiveWindow(project.id)}
-                  onClose={() => setActiveWindow(null)}
-                  position={windowPositions[project.id]}
-                  onPositionChange={(x, y) => {
-                    setWindowPositions((prev) => ({ ...prev, [project.id]: { x, y } }));
-                  }}
-                />
+                 <ProjectWindow
+                   key={project.id}
+                   project={project}
+                   isActive={activeWindow === project.id}
+                   onActivate={() => setActiveWindow(project.id)}
+                   onClose={() => setActiveWindow(null)}
+                   position={windowPositions[project.id]}
+                   onPositionChange={(x, y) => {
+                     setWindowPositions((prev) => ({ ...prev, [project.id]: { x, y } }));
+                   }}
+                   onResetPosition={() => {
+                     setWindowPositions((prev) => {
+                       const newPositions = { ...prev };
+                       delete newPositions[project.id];
+                       return newPositions;
+                     });
+                   }}
+                 />
               ))}
             </div>
           </div>
@@ -291,6 +298,7 @@ interface ProjectWindowProps {
   onClose: () => void;
   position?: { x: number; y: number };
   onPositionChange: (x: number, y: number) => void;
+  onResetPosition: () => void;
 }
 
 function ProjectWindow({
@@ -300,6 +308,7 @@ function ProjectWindow({
   onClose,
   position,
   onPositionChange,
+  onResetPosition,
 }: ProjectWindowProps) {
   const [minimized, setMinimized] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -337,7 +346,7 @@ function ProjectWindow({
   }
 
   const handleTitleBarMouseDown = (e: React.MouseEvent) => {
-    if (e.button !== 0) return; // Only left mouse button
+    if (e.button !== 0) return;
     e.stopPropagation();
     const rect = windowRef.current?.getBoundingClientRect();
     const sectionElement = windowRef.current?.closest("section");
@@ -390,7 +399,7 @@ function ProjectWindow({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              //placeholder
+              onResetPosition();
             }}
             className="window-button flex h-6 w-6 items-center justify-center text-xs font-bold"
             title="Maximize"
