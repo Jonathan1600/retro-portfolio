@@ -114,7 +114,7 @@ export default function HomePage() {
         </div>
       </header>
       <section className="relative flex flex-1 overflow-auto">
-        <div className="absolute left-4 top-4 z-50" style={{ width: "96px" }}>
+        <div className="absolute left-4 top-4 z-10" style={{ width: "96px" }}>
           {desktopIcons.map((icon, index) => (
             <DraggableIcon
               key={icon.id}
@@ -128,7 +128,7 @@ export default function HomePage() {
             />
           ))}
         </div>
-        <div className="flex-1 overflow-auto p-4 ml-32">
+        <div className="flex-1 overflow-auto p-4 pl-32">
           <div className="relative min-h-full">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
@@ -254,8 +254,8 @@ function DraggableIcon({
   };
 
   const style = position
-    ? { position: "absolute" as const, left: `${position.x}px`, top: `${position.y}px`, zIndex: 50 }
-    : { position: "absolute" as const, left: "0px", top: `${initialY}px`, zIndex: 50 };
+    ? { position: "absolute" as const, left: `${position.x}px`, top: `${position.y}px`, zIndex: 10 }
+    : { position: "absolute" as const, left: "0px", top: `${initialY}px`, zIndex: 10 };
 
   return (
     <a
