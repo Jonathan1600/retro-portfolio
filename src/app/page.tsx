@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 interface Project {
   id: number;
@@ -74,8 +75,12 @@ const desktopIcons = [
 export default function HomePage() {
   const [activeWindow, setActiveWindow] = useState<number | null>(null);
   const [toast, setToast] = useState<string | null>(null);
-  const [iconPositions, setIconPositions] = useState<Record<string, { x: number; y: number }>>({});
-  const [windowPositions, setWindowPositions] = useState<Record<number, { x: number; y: number }>>({});
+  const [iconPositions, setIconPositions] = useState<
+    Record<string, { x: number; y: number }>
+  >({});
+  const [windowPositions, setWindowPositions] = useState<
+    Record<number, { x: number; y: number }>
+  >({});
 
   const copyEmail = async (e?: React.MouseEvent) => {
     if (e) {
@@ -114,7 +119,7 @@ export default function HomePage() {
         </div>
       </header>
       <section className="relative flex flex-1 overflow-auto">
-        <div className="absolute left-4 top-4 z-10" style={{ width: "96px" }}>
+        <div className="absolute top-4 left-4 z-10" style={{ width: "96px" }}>
           {desktopIcons.map((icon, index) => (
             <DraggableIcon
               key={icon.id}
@@ -132,24 +137,27 @@ export default function HomePage() {
           <div className="relative min-h-full">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
-                 <ProjectWindow
-                   key={project.id}
-                   project={project}
-                   isActive={activeWindow === project.id}
-                   onActivate={() => setActiveWindow(project.id)}
-                   onClose={() => setActiveWindow(null)}
-                   position={windowPositions[project.id]}
-                   onPositionChange={(x, y) => {
-                     setWindowPositions((prev) => ({ ...prev, [project.id]: { x, y } }));
-                   }}
-                   onResetPosition={() => {
-                     setWindowPositions((prev) => {
-                       const newPositions = { ...prev };
-                       delete newPositions[project.id];
-                       return newPositions;
-                     });
-                   }}
-                 />
+                <ProjectWindow
+                  key={project.id}
+                  project={project}
+                  isActive={activeWindow === project.id}
+                  onActivate={() => setActiveWindow(project.id)}
+                  onClose={() => setActiveWindow(null)}
+                  position={windowPositions[project.id]}
+                  onPositionChange={(x, y) => {
+                    setWindowPositions((prev) => ({
+                      ...prev,
+                      [project.id]: { x, y },
+                    }));
+                  }}
+                  onResetPosition={() => {
+                    setWindowPositions((prev) => {
+                      const newPositions = { ...prev };
+                      delete newPositions[project.id];
+                      return newPositions;
+                    });
+                  }}
+                />
               ))}
             </div>
           </div>
@@ -161,6 +169,7 @@ export default function HomePage() {
           {toast}
         </div>
       )}
+      <Analytics />
     </div>
   );
 }
@@ -195,7 +204,7 @@ function DraggableIcon({
         if (sectionRect) {
           const distance = Math.sqrt(
             Math.pow(e.clientX - startPosRef.current.x, 2) +
-            Math.pow(e.clientY - startPosRef.current.y, 2)
+              Math.pow(e.clientY - startPosRef.current.y, 2),
           );
           if (distance > 5) {
             setHasMoved(true);
@@ -228,7 +237,7 @@ function DraggableIcon({
   }, [isDragging, dragOffset, onPositionChange, hasMoved]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     e.stopPropagation();
     if (e.button !== 0) return;
     startPosRef.current = { x: e.clientX, y: e.clientY };
@@ -261,8 +270,18 @@ function DraggableIcon({
   };
 
   const style = position
-    ? { position: "absolute" as const, left: `${position.x}px`, top: `${position.y}px`, zIndex: 10 }
-    : { position: "absolute" as const, left: "0px", top: `${initialY}px`, zIndex: 10 };
+    ? {
+        position: "absolute" as const,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        zIndex: 10,
+      }
+    : {
+        position: "absolute" as const,
+        left: "0px",
+        top: `${initialY}px`,
+        zIndex: 10,
+      };
 
   return (
     <a
@@ -275,7 +294,7 @@ function DraggableIcon({
       className={`window-border flex w-24 flex-col items-center gap-2 bg-[#c0c0c0]/80 p-3 text-xs font-bold text-black transition hover:-translate-y-1 hover:shadow-[0_4px_0_0_#7a7a7a] ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
       style={style}
     >
-      <span className="flex h-12 w-12 items-center justify-center text-lg pointer-events-none">
+      <span className="pointer-events-none flex h-12 w-12 items-center justify-center text-lg">
         {icon.icon.endsWith(".png") ? (
           <img
             src={icon.icon}
@@ -286,7 +305,9 @@ function DraggableIcon({
           icon.icon
         )}
       </span>
-      <span className="text-center leading-tight pointer-events-none">{icon.label}</span>
+      <span className="pointer-events-none text-center leading-tight">
+        {icon.label}
+      </span>
     </a>
   );
 }
@@ -364,7 +385,12 @@ function ProjectWindow({
   };
 
   const style = position
-    ? { position: "absolute" as const, left: `${position.x}px`, top: `${position.y}px`, width: "400px" }
+    ? {
+        position: "absolute" as const,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        width: "400px",
+      }
     : undefined;
 
   return (
