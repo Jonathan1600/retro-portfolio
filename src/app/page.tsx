@@ -15,6 +15,15 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: "Jimbo's TikTok Downloader",
+    description:
+      "A web app that helps downloading tiktok videos, HD and watermarkless. It uses yt-dlp in the backend (Pyhton, FastAPI) after making a POST request from the frontend(Typescript, TailwindCSS, NextJS).",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    link: "https://tiktok-downloader-jmb.vercel.app/",
+    github: "https://github.com/Jonathan1600/tiktok-downloader",
+  },
+  {
+    id: 2,
     title: "Retro Portfolio",
     description:
       "A nostalgic portfolio website styled like a 90s operating system. Built with Next.js and Tailwind CSS.",
@@ -23,7 +32,7 @@ const projects: Project[] = [
     github: "https://github.com/Jonathan1600/retro-portfolio",
   },
   {
-    id: 2,
+    id: 3,
     title: "Time To Visually Complete",
     description:
       "An open source library to measure when the page has fully finished loading for users. Developed while working @ Dropbox with React, Node.js ",
@@ -32,7 +41,7 @@ const projects: Project[] = [
     github: "https://github.com/dropbox/ttvc",
   },
   {
-    id: 3,
+    id: 4,
     title: "YouTube Remover",
     description:
       "Chrome extension made to remove some youtube features that are frustrating or a distraction. Some of this features include Shorts, AI boxes, or Sponsored Content",
@@ -41,7 +50,7 @@ const projects: Project[] = [
     github: "https://github.com/Jonathan1600/youtube-remover",
   },
   {
-    id: 4,
+    id: 5,
     title: "Hearthstone Cards Viewer",
     description:
       "Hearthsone Card Viewer pulling directly from the Blizzard API to get up to date card lists.",
@@ -446,7 +455,7 @@ function ProjectWindow({
         </div>
       </div>
 
-      <div className="min-h-[200px] bg-[#c0c0c0] p-4">
+      <div className="min-h-50 bg-[#c0c0c0] p-4">
         <div className="window-border-inset bg-white p-4">
           <p className="mb-4 text-sm text-black">{project.description}</p>
 
