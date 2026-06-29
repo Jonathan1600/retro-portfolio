@@ -15,6 +15,15 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: "ChadWallet",
+    description:
+      "A mock wallet built on solana, privy for auth, birdEye for populating trading data and using trading view for the trading charts. Built in React using TailwindCSS and Next.js",
+    technologies: ["Solana", "Privy", "BirdEye", "TradingView", "React", "NextJS"],
+    link: "https://j-chad-wallet.vercel.app/",
+    github: "https://github.com/Jonathan1600",
+  },
+  {
+    id: 2,
     title: "Jimbo's TikTok Downloader",
     description:
       "A web app that helps downloading tiktok videos, HD and watermarkless. It uses yt-dlp in the backend (Pyhton, FastAPI) after making a POST request from the frontend(Typescript, TailwindCSS, NextJS).",
@@ -23,7 +32,7 @@ const projects: Project[] = [
     github: "https://github.com/Jonathan1600/tiktok-downloader",
   },
   {
-    id: 2,
+    id: 3,
     title: "Retro Portfolio",
     description:
       "A nostalgic portfolio website styled like a 90s operating system. Built with Next.js and Tailwind CSS.",
@@ -32,7 +41,7 @@ const projects: Project[] = [
     github: "https://github.com/Jonathan1600/retro-portfolio",
   },
   {
-    id: 3,
+    id: 4,
     title: "Time To Visually Complete",
     description:
       "An open source library to measure when the page has fully finished loading for users. Developed while working @ Dropbox with React, Node.js ",
@@ -41,7 +50,7 @@ const projects: Project[] = [
     github: "https://github.com/dropbox/ttvc",
   },
   {
-    id: 4,
+    id: 5,
     title: "YouTube Remover",
     description:
       "Chrome extension made to remove some youtube features that are frustrating or a distraction. Some of this features include Shorts, AI boxes, or Sponsored Content",
@@ -50,7 +59,7 @@ const projects: Project[] = [
     github: "https://github.com/Jonathan1600/youtube-remover",
   },
   {
-    id: 5,
+    id: 6,
     title: "Hearthstone Cards Viewer",
     description:
       "Hearthsone Card Viewer pulling directly from the Blizzard API to get up to date card lists.",
